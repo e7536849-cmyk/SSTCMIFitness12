@@ -1401,7 +1401,7 @@ def exercise_logger():
             )
         
         with col2:
-            intensity = st.selectbox("Intensity", ["Low", "Medium", "High"])
+            intensity = st.selectbox("Intensity", ["Low", "Medium", "High"], key="intensity_tab1")
         
         st.write("---")
         
@@ -1468,17 +1468,17 @@ def exercise_logger():
             timer_col1, timer_col2, timer_col3 = st.columns(3)
             
             with timer_col1:
-                if st.button("▶️ Start", use_container_width=True):
+                if st.button("▶️ Start", use_container_width=True, key="start_simple_timer"):
                     st.session_state.timer_running = True
                     st.session_state.timer_seconds_left = total_seconds
                     st.session_state.timer_total = total_seconds
             
             with timer_col2:
-                if st.button("⏸️ Pause", use_container_width=True):
+                if st.button("⏸️ Pause", use_container_width=True, key="pause_simple_timer"):
                     st.session_state.timer_running = False
             
             with timer_col3:
-                if st.button("🔄 Reset", use_container_width=True):
+                if st.button("🔄 Reset", use_container_width=True, key="reset_simple_timer"):
                     st.session_state.timer_running = False
                     st.session_state.timer_seconds_left = total_seconds
             
@@ -1539,7 +1539,8 @@ def exercise_logger():
         uploaded_file = st.file_uploader(
             "Upload Workout Photo",
             type=['jpg', 'jpeg', 'png'],
-            help="Take a photo during your workout"
+            help="Take a photo during your workout",
+            key="file_uploader_tab1"
         )
         
         # Additional notes
@@ -2008,7 +2009,7 @@ def exercise_logger():
                     help="How many reps did you do?"
                 )
         
-        intensity = st.selectbox("Intensity", ["Low", "Medium", "High"])
+        intensity = st.selectbox("Intensity", ["Low", "Medium", "High"], key="intensity_tab3")
         notes = st.text_area("Notes (optional)", placeholder="Any additional notes about your workout...")
         
         st.write("---")
@@ -2028,7 +2029,8 @@ def exercise_logger():
         uploaded_file = st.file_uploader(
             "Upload exercise photo",
             type=['jpg', 'jpeg', 'png'],
-            help="Take a photo during your exercise to verify your workout"
+            help="Take a photo during your exercise to verify your workout",
+            key="file_uploader_tab3"
         )
         
         if uploaded_file is not None:
